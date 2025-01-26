@@ -44,4 +44,4 @@ if __name__ == "__main__":
     # Save the model
     with open("model.pkl", "wb") as file:
         pickle.dump(model, file)
-    print("Model saved to model.pkl")
+    print("Model saved succefully to model.pkl")
