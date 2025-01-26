@@ -27,7 +27,11 @@ jobs:
         with:
           python-version: '3.8'
       - name: Install dependencies
-        run: pip install -r Requirements.txt
+        run: pip install -r requirements.txt  # Fixed case of "requirements.txt"
+      - name: Set up DVC
+        run: |
+          pip install dvc
+          dvc pull  # Pull dataset files if tracked with remote storage
       - name: Run tests
         run: python -m unittest test.py
 
