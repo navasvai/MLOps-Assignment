@@ -33,6 +33,23 @@ def load_data():
     return X, y
 
 
+def train_model(X_train, y_train, max_depth=5):
+    """
+    Train a DecisionTreeClassifier with the given training data.
+
+    Args:
+        X_train (array): Training features.
+        y_train (array): Training labels.
+        max_depth (int): Maximum depth of the decision tree.
+
+    Returns:
+        model (DecisionTreeClassifier): Trained model.
+    """
+    model = DecisionTreeClassifier(max_depth=max_depth, random_state=42)
+    model.fit(X_train, y_train)
+    return model
+
+
 def hyperparameter_tuning(X_train, y_train):
     """
     Perform hyperparameter tuning using GridSearchCV.
