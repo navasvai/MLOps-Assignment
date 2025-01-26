@@ -28,6 +28,12 @@ jobs:
           python-version: '3.8'
       - name: Install dependencies
         run: pip install -r Requirements.txt
+      - name: Ensure Dataset Exists
+        run: |
+          mkdir -p data
+          if [ ! -f data/iris.csv ]; then
+            python -c "from train import save_dataset; save_dataset()"
+          fi
       - name: Run tests
         run: python -m unittest test.py
 
