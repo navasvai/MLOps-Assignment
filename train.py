@@ -50,6 +50,23 @@ def train_model(X_train, y_train, max_depth=5):
     return model
 
 
+def evaluate_model(model, X_test, y_test):
+    """
+    Evaluate the trained model using accuracy score.
+
+    Args:
+        model (DecisionTreeClassifier): Trained model.
+        X_test (array): Test features.
+        y_test (array): Test labels.
+
+    Returns:
+        accuracy (float): Accuracy score of the model.
+    """
+    predictions = model.predict(X_test)
+    accuracy = accuracy_score(y_test, predictions)
+    return accuracy
+
+
 def hyperparameter_tuning(X_train, y_train):
     """
     Perform hyperparameter tuning using GridSearchCV.
@@ -94,7 +111,7 @@ if __name__ == "__main__":
     best_model, best_params = hyperparameter_tuning(X_train, y_train)
 
     # Evaluate the best model
-    accuracy = accuracy_score(y_test, best_model.predict(X_test))
+    accuracy = evaluate_model(best_model, X_test, y_test)
     print(f"Best Model Accuracy: {accuracy:.2f}")
 
     # Save the best model
