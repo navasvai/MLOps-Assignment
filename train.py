@@ -1,12 +1,12 @@
 import os
 import pandas as pd
 import mlflow
-import mlflow.sklearn
 from sklearn.datasets import load_iris
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.metrics import accuracy_score
 import pickle
+
 
 def save_dataset():
     """
@@ -18,6 +18,7 @@ def save_dataset():
     os.makedirs("data", exist_ok=True)
     df.to_csv("data/iris.csv", index=False)
     print("Iris dataset saved to data/iris.csv")
+
 
 def load_data():
     """
@@ -32,8 +33,19 @@ def load_data():
     y = data.iloc[:, -1].values
     return X, y
 
-def hyperparameter_tuning(X_train, y_train):
 
+def hyperparameter_tuning(X_train, y_train):
+    """
+    Perform hyperparameter tuning using GridSearchCV.
+
+    Args:
+        X_train (array): Training features.
+        y_train (array): Training labels.
+
+    Returns:
+        best_model (DecisionTreeClassifier): The best model found.
+        best_params (dict): Best hyperparameters.
+    """
     param_grid = {
         "max_depth": [3, 5, 10],
         "min_samples_split": [2, 5, 10],
@@ -49,6 +61,7 @@ def hyperparameter_tuning(X_train, y_train):
 
     print("Best Hyperparameters:", best_params)
     return best_model, best_params
+
 
 if __name__ == "__main__":
     # Save dataset locally if not already saved
