@@ -4,6 +4,7 @@ from train import load_data, train_model, evaluate_model
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.model_selection import train_test_split
 
+
 class TestMLProject(unittest.TestCase):
     def setUp(self):
         # Load dataset and split it for testing
@@ -14,12 +15,16 @@ class TestMLProject(unittest.TestCase):
 
     def test_data_loading(self):
         # Test that data loads correctly
-        self.assertEqual(len(self.X), len(self.y), "Number of features and labels mismatch")
+        self.assertEqual(
+            len(self.X), len(self.y), "Number of features and labels mismatch"
+        )
 
     def test_model_training(self):
         # Test that the model trains without errors
         model = train_model(self.X_train, self.y_train)
-        self.assertIsInstance(model, DecisionTreeClassifier, "Model is not a DecisionTreeClassifier")
+        self.assertIsInstance(
+            model, DecisionTreeClassifier, "Model is not a DecisionTreeClassifier"
+        )
 
     def test_model_evaluation(self):
         # Test that the evaluation returns a valid accuracy score
@@ -37,7 +42,12 @@ class TestMLProject(unittest.TestCase):
         # Check that the file exists and can be loaded
         with open("test_model.pkl", "rb") as file:
             loaded_model = pickle.load(file)
-        self.assertIsInstance(loaded_model, DecisionTreeClassifier, "Saved model is not a DecisionTreeClassifier")
+        self.assertIsInstance(
+            loaded_model,
+            DecisionTreeClassifier,
+            "Saved model is not a DecisionTreeClassifier",
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -3,6 +3,10 @@ from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import accuracy_score
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier
+import pickle
 
 # Load dataset
 def load_data():
@@ -26,7 +30,9 @@ if __name__ == "__main__":
     X, y = load_data()
 
     # Split into training and test sets
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=0.2, random_state=42
+    )
 
     # Train model
     model = train_model(X_train, y_train)
@@ -39,3 +45,4 @@ if __name__ == "__main__":
     with open("model.pkl", "wb") as file:
         pickle.dump(model, file)
     print("Model saved to model.pkl")
+
