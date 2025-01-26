@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/INNAV12/OneDrive%20-%20ABB/Personal/BITS%20AIML/Sem%203/MLOps/Assignment/Assignment%201/MLOps-Assignment/mlruns/698282365851331500/d0a31ebec5144de589555e6b8e8a36f0/artifacts
+end_time: 1737877590908
+entry_point_name: ''
+experiment_id: '698282365851331500'
+lifecycle_stage: active
+run_id: d0a31ebec5144de589555e6b8e8a36f0
+run_name: languid-lynx-532
+run_uuid: d0a31ebec5144de589555e6b8e8a36f0
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1737877568332
+status: 3
+tags: []
+user_id: INNAV12
