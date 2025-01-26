@@ -27,11 +27,11 @@ jobs:
         with:
           python-version: '3.8'
       - name: Install dependencies
-        run: pip install -r Requirements.txt 
-      - name: Set up DVC
+        run: pip install -r requirements.txt
+      - name: Copy Local Dataset
         run: |
-          pip install dvc
-          dvc pull  # Pull dataset files if tracked with remote storage
+          mkdir -p data
+          cp /path/to/local/data/iris.csv data/iris.csv
       - name: Run tests
         run: python -m unittest test.py
 
