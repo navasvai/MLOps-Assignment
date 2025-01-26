@@ -1,12 +1,16 @@
 import unittest
 import pickle
-from train import load_data, train_model, evaluate_model
+import os
+from train import save_dataset, load_data, train_model, evaluate_model
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.model_selection import train_test_split
 
-
 class TestMLProject(unittest.TestCase):
     def setUp(self):
+        # Ensure dataset exists locally
+        if not os.path.exists("data/iris.csv"):
+            save_dataset()
+        
         # Load dataset and split it for testing
         self.X, self.y = load_data()
         self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(
@@ -21,21 +25,21 @@ class TestMLProject(unittest.TestCase):
 
     def test_model_training(self):
         # Test that the model trains without errors
-        model = train_model(self.X_train, self.y_train)
+        model = train_model(self.X_train, self.y_train, max_depth=5)
         self.assertIsInstance(
             model, DecisionTreeClassifier, "Model is not a DecisionTreeClassifier"
         )
 
     def test_model_evaluation(self):
         # Test that the evaluation returns a valid accuracy score
-        model = train_model(self.X_train, self.y_train)
+        model = train_model(self.X_train, self.y_train, max_depth=5)
         accuracy = evaluate_model(model, self.X_test, self.y_test)
         self.assertGreaterEqual(accuracy, 0, "Accuracy is less than 0")
         self.assertLessEqual(accuracy, 1, "Accuracy is greater than 1")
 
     def test_model_saving(self):
         # Test that the model is saved to a file
-        model = train_model(self.X_train, self.y_train)
+        model = train_model(self.X_train, self.y_train, max_depth=5)
         with open("test_model.pkl", "wb") as file:
             pickle.dump(model, file)
 
@@ -47,7 +51,6 @@ class TestMLProject(unittest.TestCase):
             DecisionTreeClassifier,
             "Saved model is not a DecisionTreeClassifier",
         )
-
 
 if __name__ == "__main__":
     unittest.main()
